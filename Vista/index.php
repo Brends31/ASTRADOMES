@@ -1,0 +1,458 @@
+<?php
+    require_once("../controlador/controlador.php");
+
+    error_reporting(0);
+    session_start();
+    $varsesion = $_SESSION['usuario'];
+
+    $resultado = obtenerNoticias();
+?>
+
+<!doctype html>
+<html lang="zxx">
+    
+<!-- Mirrored from smartitsource.com/reptro/reptro/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Oct 2018 22:51:30 GMT -->
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Page Title -->
+    <title>ASTRADOMES</title>
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.html">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Google Fonts css-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- Icofont css-->
+    <link href="assets/icofont/icofont.min.css" rel="stylesheet" media="screen">
+    <!-- FlatIcon css-->
+    <link href="assets/font/flaticon.css" rel="stylesheet" media="screen">
+    <!-- Carousel css -->
+    <link href="assets/css/owl.carousel.min.css" rel="stylesheet" media="screen">
+    <!-- Carousel default css -->
+    <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" media="screen">
+    <!-- Animate css -->
+    <link href="assets/css/animate.css" rel="stylesheet" media="screen">
+    <!-- Lity css -->
+    <link href="assets/css/lity.css" rel="stylesheet" media="screen">
+    <!-- Style css -->
+    <link href="assets/css/style.css" rel="stylesheet" media="screen">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!--Modernizr Js-->
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+
+    <!--<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f985becd-4629-4c7e-873b-f08dbcb5871b";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>-->
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5be9d9e40e6b3311cb78f489/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    
+</head>
+
+
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+<body>
+
+    <!-- Preloader Section -->
+      <div id="loading">
+        <div id="loading-center">
+          <div id="loading-center-absolute">
+          <div class="object" id="object_four"></div>
+          <div class="object" id="object_three"></div>
+          <div class="object" id="object_two"></div>
+          <div class="object" id="object_one"></div>
+          </div>
+        </div>
+      </div>
+    <!-- Preloader Section -->
+
+    <!-- Header Section Start -->
+    <header id="main-header">
+      <!-- header-top -->
+        <div class="header-top">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+               <!--  Office Time  -->
+                <div class="office-time float-left">
+                  <p><span><i class="icofont-wall-clock"></i></span>Horario de Atención: Lun - Vie (8:30 am - 4:00 pm)</p>
+                </div>
+               <!--  Office Time  -->
+              </div>
+              <div class="col-lg-6 col-md-6">
+
+                <?php 
+
+                  if ($varsesion != null || $varsesion != '') {
+                    echo "<!-- User Logout -->
+                          <div class='user-logout float-right'>
+                            <ul>
+                              <li><span><i class='icofont-ui-user'></i></span><a href='usuario.php'>".$varsesion."</a></li>
+                              <li id = 'li-logout'><a href='../controlador/cerrarSesion.php'>Cerrar Sesión</a></li>
+                            </ul>
+                          </div>
+                          <!-- Login Register -->";
+                  }
+
+                  else {
+                    echo "<!-- Login Register -->
+                          <div class='login-register float-right'>
+                            <ul>
+                              <li><span><i class='icofont-ui-user'></i></span><a href='login.php'>Log in</a></li>
+                              <li><a href='registro.php'>Registro</a></li>
+                            </ul>
+                          </div>
+                          <!-- Login Register -->";
+                  }
+
+                 ?>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- header-top -->
+      <!-- header-navigation -->
+        <div class="header-bottom header-sticky">
+        <!-- Header Inner -->
+            <div class="header-inner">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-12">
+                    <!-- Logo -->
+                  <div class="logo">
+                    <a href="index.php"><img src="assets/images/normal/logo.png" alt="Logo"></a>
+                  </div>
+                    <!--/End Logo -->
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-12">
+                    <!-- Main Menu -->
+                    <div class="main-menu">
+                      <nav class="navbar navbar-expand-lg">
+                        <div class="navbar-collapse">
+                          <ul class="nav menu navbar-nav">
+
+                            <li class="active"><a href="index.php">Inicio</a></li>
+
+                            <li><a href="galeria.php">Galería</a></li>
+
+                            <li><a href="#">Organización<i class="icofont-simple-down"></i></a>
+                              <ul class="dropdown">
+                                <li><a href="nosotros.php">Nosotros</a></li>
+                                <li><a href="servicios.php">Servicios</a></li>
+                                <li><a href="actividades.php">Actividades</a></li>
+                                <li><a href="preguntas.php">Preguntas Frecuentes</a></li>
+                              </ul>
+                            </li>
+
+                            <li><a href="documentos.php">Documentos</a></li>
+
+                            <li><a href="contacto.php">Contacto</a></li>
+
+                            <li class="top-support"><a href="assets/documentos/ManualUsuario.pdf" target="_blank">Soporte</a></li>
+
+                          </ul>
+
+                        </div>
+                      </nav>
+                    </div>
+                    <!--/ End Main Menu -->
+
+                    <!-- Mobile Menu Start -->
+                    <div class="mobile-menu d-block d-lg-none col"></div><!-- Mobile Menu End -->
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!--/ End Header Inner -->
+        </div>
+      <!-- header-navigation -->
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Home Slider Two Start-->
+      <section id="main-slider-2">
+          <div id="slider-two" class="owl-carousel owl-theme">
+           <!-- Slider Item -->
+            <div class="item">
+              <div class="intro-content">
+                  <div class="slider-images">
+                      <img src="assets/images/slider/1920x700/1.jpg" alt="Slider Two">
+                  </div>
+                  <div class="slider-content">
+                      <div class="display-table">
+                          <div class="display-table-cell">
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <!-- layer 1 -->
+                                          <div class="layer-1-2">
+                                              <h1 class="title2"><span class="subtitle">Asociación</span><br/>de trabajadoras domésticas</h1>
+                                          </div>
+                                          <!-- layer 2 -->
+                                          <div class="layer-1-1 ">
+                                              <p>Las trabajadoras domésticas pueden contar con una organización que muestre interés en sus necesidades.</p>
+                                          </div>
+                                          
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div> <!-- Slider Item -->
+
+           <!-- Slider Item -->
+            <div class="item">
+              <div class="intro-content">
+                  <div class="slider-images">
+                      <img src="assets/images/slider/1920x700/2.jpg" alt="Slider Two">
+                  </div>
+                  <div class="slider-content">
+                      <div class="display-table">
+                          <div class="display-table-cell">
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <!-- layer 1 -->
+                                          <div class="layer-1-2 align-center">
+                                              <h1 class="title2"><span class="subtitle">Brindamos Capacitaciones</span><br/>a nuestra comunidad</h1>
+                                          </div>
+                                          <!-- layer 2 -->
+                                          <div class="layer-1-1 align-center">
+                                              <p>Contamos con cursos de computación y alfabetización para los miembro que estén interesados en ampliar sus conocimientos y así poder superarse.</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div> <!-- Slider Item -->
+           <!-- Slider Item -->
+            <div class="item">
+              <div class="intro-content">
+                  <div class="slider-images">
+                      <img src="assets/images/slider/1920x700/3.jpg" alt="Slider Two">
+                  </div>
+                  <div class="slider-content">
+                      <div class="display-table">
+                          <div class="display-table-cell">
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <!-- layer 1 -->
+                                          <div class="layer-1-2 align-center">
+                                              <h1 class="title2"><span class="subtitle">Apoyamos a cualquier trabajador </span><br/>sin importar su condición</h1>
+                                          </div>
+                                          <!-- layer 2 -->
+                                          <div class="layer-1-1 align-center">
+                                              <p>Aquellos trabajadores nacionales o que posean una condición de migrantes son bienvenidos en nuestra organización.</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div> <!-- Slider Item -->
+          </div>
+      </section>
+    <!-- Home Slider End-->
+
+
+    <!-- About Us -->
+      <section id="about-us" class="section-bg-gray  pt-100  pb-100">
+        <div class="container">
+          <!-- Start Row -->
+          <div class="row">
+            <!-- Start Col -->
+            <div class="col-lg-6 col-md-12">
+              <div class="about-us-left">
+                <h2>Bienvenido a ASTRADOMES</h2>
+                <p>Somos una organización para asesorar a las trabajadoras domésticas y capacitarlas en distintas formas,
+                existimos desde hace 26 años.</p>
+
+                <a href="nosotros.php">Read More <span><i class="icofont-long-arrow-right"></i></span></a>
+              </div>
+            </div>
+            <!-- End Col -->
+            <!-- Start Col -->
+            <div class="col-lg-6 col-md-12   responsive-320 responsive-pt-50">
+              <div class="about-us-right">
+                <img src="assets/images/video/1.jpg" alt="Image">
+                <a href="https://www.youtube.com/watch?v=7rLh03i6mc0" class="icon-video popup-video" data-lity><span><i class="icofont-ui-play"></i></span></a>
+              </div>
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+      </section>
+    <!-- About Us -->
+
+
+  
+   <!--  Latest Blog News -->
+    <section id="latest-blog-area" class="  pt-100  pb-100">
+      <div class="container">
+        <!-- Start Row -->
+        <div class="row">
+          <div class="section-default-title text-center col-12">
+            <h2>Novedades</h2>
+            <p>Noticias relevantes para nuestra comunidad</p>
+          </div>
+        </div>
+        <!-- End Row -->
+
+        <?php
+
+          $columas = count($resultado) / 3;
+          $sobrantes = count($resultado) % 3;
+          $indiceNoticia = 0;
+
+          if(!is_int($columas)){
+            $columas = intval($columas += 1);
+          }
+
+          for ($i=0; $i < $columas ; $i++) 
+
+            if ($i == $columas-1 and $sobrantes > 0) {
+              echo "<!-- Start Row -->
+                    <div class='row pt-45'>";
+              for ($a=0; $a < $sobrantes ; $a++):
+                echo "<!--  Start Col -->
+                      <div class='col-lg-4 col-md-4 responsive-320'>
+                        <div class='blog-item'>
+                          <div class='blog-thumb'>
+                            <a href='#'><img src=".$resultado[$indiceNoticia][3]." alt='Image'></a>
+                          </div>
+                          <div class='blog-details'>
+                            <h3><a href='#'>".$resultado[$indiceNoticia][0]."</a></h3>
+                            <p>".$resultado[$indiceNoticia][1]."</p>
+                            <a class='read-more' href='".$resultado[$indiceNoticia][4]."'>Ver más <span><i class='icofont-long-arrow-right'></i></span></a>
+                            <hr>
+                            <div class='meta-info'>
+                              <ul>
+                                <li><span><i class='icofont icofont-user'></i></span><a href='#'>Administrador</a></li>
+                                <li><span><i class='icofont icofont-calendar'></i></span><a href='#'>".$resultado[$indiceNoticia][2]."</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!--  End Col -->";
+              $indiceNoticia += 1;
+              ?>
+              <?php endfor; ?>
+
+              <?php  
+              echo "</div>
+              <!-- End Row -->";
+            }
+
+            else {
+              echo "<!-- Start Row -->
+                    <div class='row pt-45'>";
+              for ($a=0; $a < 3 ; $a++):
+                echo "<!--  Start Col -->
+                      <div class='col-lg-4 col-md-4 responsive-320'>
+                        <div class='blog-item'>
+                          <div class='blog-thumb'>
+                            <a href='#'><img src=".$resultado[$indiceNoticia][3]." alt='Image'></a>
+                          </div>
+                          <div class='blog-details'>
+                            <h3><a href='#'>".$resultado[$indiceNoticia][0]."</a></h3>
+                            <p>".$resultado[$indiceNoticia][1]."</p>
+                            <a class='read-more' href='".$resultado[$indiceNoticia][4]."'>Ver más <span><i class='icofont-long-arrow-right'></i></span></a>
+                            <hr>
+                            <div class='meta-info'>
+                              <ul>
+                                <li><span><i class='icofont icofont-user'></i></span><a href='#'>Administrador</a></li>
+                                <li><span><i class='icofont icofont-calendar'></i></span><a href='#'>".$resultado[$indiceNoticia][2]."</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!--  End Col -->";
+                $indiceNoticia += 1;
+              ?>
+              <?php endfor; ?>
+
+              <?php  
+              echo "</div>
+              <!-- End Row -->";
+
+            }
+
+        ?>
+      </div>
+    </section>
+   <!--  Latest Blog News -->
+
+   <!--  Footer Bottom Area -->
+    <footer id="footer-bottom">
+      <div class="container">
+        <!-- Start Row -->
+        <div class="row">
+          <!-- Start Col -->
+          <div class=" col-lg-6 col-md-12">
+            <div class="copy-text text-left">
+              <p>Copyrights © 2018 Todos los Derechos Reservados por <a href="#">ASTRADOMES</a></p>
+            </div>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+    </footer>
+   <!--  Footer Bottom Area -->
+
+
+
+    <!--All Jquery Library Files -->
+    <script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
+    <!-- Carousel js  -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- Bootstrap js  -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Google Map Active js  -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn-q0VMtMOum5A7HVG86duHeJApbVDv7o"></script>
+    <script src="assets/js/map.js"></script>
+    <!-- contact-form Js -->
+    <script src="assets/js/contact-form.js"></script>
+    <!-- Plugins Js -->
+    <script src="assets/js/plugins.js"></script>
+    <!-- wow.min Js -->
+    <script src="assets/js/wow.min.js"></script>
+    <!-- main Js -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from smartitsource.com/reptro/reptro/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Oct 2018 22:52:42 GMT -->
+</html>
