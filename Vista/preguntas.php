@@ -232,8 +232,8 @@
                         <div class='blog-item'>
                           
                           <div class='blog-details'>
-                            <h3><a href='#'>".$preguntas[$indicePregunta][1]."</a></h3>
-                            <p>".$preguntas[$indicePregunta][2]."</p>
+                            <h3><a href='#'>".$preguntas[$indicePregunta][0]."</a></h3>
+                            <p>".$preguntas[$indicePregunta][1]."</p>
                             
                             <hr>
                           </div>

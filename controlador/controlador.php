@@ -277,7 +277,7 @@ function verifyImageUpload($post, $imageInputName)
 		// If there's an image to upload, the destination is set and the image is moved to
 		// that destination.
 		if (in_array($type, array('gif', 'jpg', 'jpeg', 'png'))) {
-			$destination = $post . '/' . uniqid(rand()) . '.' . $type;
+			$destination = $post . uniqid(rand()) . '.' . $type;
 
 			move_uploaded_file($imageTempName, $destination);
 		} else {
